@@ -1,0 +1,37 @@
+package com.example.demo.service;
+
+import com.example.demo.model.Employee;
+import com.example.demo.repository.EmployeeRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class EmployeeService {
+
+    private final EmployeeRepository employeeRepository;
+
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
+
+    public List<Employee> getEmployees() {
+        return employeeRepository.findAll();
+    }
+
+    public Employee getEmployeeById(int id) {
+        return employeeRepository.findById(id).orElse(null);
+    }
+
+    public Employee addEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    public Employee updateEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    public void deleteEmployee(int id) {
+        employeeRepository.deleteById(id);
+    }
+}
